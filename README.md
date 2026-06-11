@@ -1,5 +1,5 @@
 # 🛡️ VEX Anti-Cheat v2.0
-**Virtual Execution X-termination** — Hybrid cloud anti-cheat untuk Roblox developers
+**Virtual Execution X-termination — A hybrid-cloud anti-cheat framework engineered for Roblox developers.**
 
 ---
 
@@ -7,11 +7,11 @@
 
 ```
 VEX-AntiCheat/
-├── database/schema.sql              → Jalankan di Supabase SQL Editor
-├── backend/                         → Deploy ke Vercel (Node.js)
-│   ├── handler.js                   ← Vercel entry point (ROOT level)
-│   ├── server.js                    ← Express app
-│   ├── vercel.json                  ← Config Vercel (pakai rewrites)
+├── database/schema.sql             → Execute via Supabase SQL Editor
+├── backend/                        → Deploy to Vercel (Node.js)
+│   ├── handler.js                  ← Vercel entry point (ROOT level)
+│   ├── server.js                   ← Express application core
+│   ├── vercel.json                 ← Vercel deployment routing configuration
 │   ├── middleware/auth.js
 │   └── routes/
 │       ├── license.js
@@ -19,55 +19,55 @@ VEX-AntiCheat/
 │       ├── admin.js
 │       ├── globalban.js
 │       └── maintenance.js
-├── bot/                             → Deploy ke Fps.ms (Node.js)
+├── bot/                            → Deploy to Fps.ms or Pterodactyl (Node.js)
 │   ├── index.js
 │   ├── commands/
 │   │   ├── create.js    /create
-│   │   ├── cs.js        /cs
-│   │   ├── ct.js        /ct
+│   │   ├── cs.js        /cs (Check Status)
+│   │   ├── ct.js        /ct (Check Timer)
 │   │   ├── renewal.js   /renewal
 │   │   ├── help.js      /help
-│   │   ├── checkstatus.js (alias)
-│   │   └── checktimer.js  (alias)
+│   │   ├── checkstatus.js (Alias)
+│   │   └── checktimer.js  (Alias)
 │   └── handlers/memberLeave.js
 ├── roblox/
 │   ├── ServerScriptService/
-│   │   ├── VEX_Config.lua           ← EDIT INI (Secret Key, Admin IDs)
-│   │   ├── VEX_BackendURL.lua       ← OBFUSCATE INI (backend URL)
+│   │   ├── VEX_Config.lua           ← Configuration Hub (Secret Key, Admin IDs)
+│   │   ├── VEX_BackendURL.lua       ← Obfuscated Endpoint (Backend URL payload)
 │   │   ├── VEX_License.lua
 │   │   ├── VEX_Detector.lua
 │   │   ├── VEX_Main.lua
 │   │   ├── VEX_MapProtection.lua
-│   │   └── VEX_AdminCheck.lua  (tidak perlu — sudah di VEX_Main)
+│   │   └── VEX_AdminCheck.lua       (Deprecated — Integrated into VEX_Main)
 │   ├── StarterGui/
-│   │   └── VEX_AdminPanel.lua       ← Glassmorphin UI
+│   │   └── VEX_AdminPanel.lua       ← Glassmorphism Admin Interface UI
 │   ├── StarterPlayerScripts/
-│   │   └── VEX_ClientHandler.lua    ← Tamper popup + Integrity
+│   │   └── VEX_ClientHandler.lua    ← Tamper Detection Popup & Integrity Layer
 │   └── ReplicatedStorage/
 │       └── VEX_TopbarIcon.lua
-├── web/index.html                   → Deploy ke Vercel (Static)
-└── encoder/VEX_URLEncoder.py        → Generate char codes dari URL
+├── web/index.html                  → Deploy to Vercel (Static Dashboard)
+└── encoder/VEX_URLEncoder.py        → Character-code generator for URL obfuscation
 ```
 
 ---
 
-## 🚀 Setup (Urutan Deploy)
+## 🚀 Deployment & Setup Pipeline
 
-### 1. Supabase
-1. Buat project di [supabase.com](https://supabase.com)
-2. SQL Editor → paste isi `database/schema.sql` → Run
-3. Catat **URL** dan **Service Role Key** dari Settings → API
+### 1. Database Provisioning (Supabase)
+1. Initialize a new project via the Supabase Dashboard.
+2. Navigate to the SQL Editor, paste the contents of database/schema.sql, and execute the queries.
+3. Retrieve and record the Project URL and Service Role API Key from Project Settings -> API
 
-### 2. Backend → Vercel
-```bash
+### 2. Microservice Backend Deployment (Vercel)
+```
 cd backend/
 npm install
-# Push ke GitHub lalu import di vercel.com
-# ATAU pakai CLI:
+# Push changes to GitHub and import via the Vercel Dashboard
+# OR deploy instantly via the Vercel CLI:
 npm install -g vercel
 vercel --prod
 ```
-Set **Environment Variables** di Vercel Dashboard:
+Configure the following Environment Variables in your Vercel Dashboard:
 | Key | Value |
 |-----|-------|
 | `SUPABASE_URL` | URL Supabase |
@@ -81,55 +81,56 @@ Set **Environment Variables** di Vercel Dashboard:
 
 Test: `curl https://your-backend.vercel.app/health`
 
-### 3. Web Dashboard → Vercel
-1. Edit `web/index.html` → ganti `CFG.BACKEND` dan `CFG.KEY`
-2. Di Vercel Dashboard → New Project → upload folder `web/`
+### 3. Static Web Dashboard (Vercel Static Hosting)
+1. Modify web/index.html to configure the system constants: update CFG.BACKEND and CFG.KEY.
+2. On Vercel Dashboard, select New Project, upload the web/ directory, and set the framework preset to Other (Static).
 3. Framework: **Other** (static)
 
-### 4. Bot → Fps.ms
+### 4. Discord Bot Integration (Fps.ms / Pterodactyl)
 ```
-Upload semua file dari bot/ ke File Manager panel Pterodactyl
-Buat file .env berdasarkan .env.example
-Start server
+1. Upload all assets from the bot/ directory to your Pterodactyl File Manager.
+2. Initialize a .env file using .env.example as a blueprint.
+3. Start the application instance.
 ```
-**Wajib aktifkan di Discord Dev Portal:**
-- Server Members Intent ✅
-- Message Content Intent ✅
+**⚠️ Mandatory Gateway Intents (Discord Developer Portal):**
 
-### 5. Roblox Studio
-1. Aktifkan **Allow HTTP Requests**: Game Settings → Security ✅
-2. Buat folder `VEX` di **ServerScriptService**
-3. Buat script sesuai struktur di atas
-4. **Edit `VEX_Config.lua`:**
+1. Server Members Intent ✅
+2. Message Content Intent ✅
+
+### 5. Roblox Runtime Initialization
+1. nable Network Permissions: Navigate to Game Settings -> Security and toggle Allow HTTP Requests ✅
+2. Create a folder named VEX inside ServerScriptService.
+3. Replicate the server-side file structure within that directory.
+4. **Configure `VEX_Config.lua`:**
 ```lua
-Config.SECRET_KEY = "VEX-xxx..." -- dari /create di Discord
-Config.ADMIN_IDS  = { 123456789 } -- UserId Roblox admin kamu
+Config.SECRET_KEY = "VEX-xxx..." -- Generated via the Discord /create command
+Config.ADMIN_IDS  = { 123456789 } -- Roblox UserIds authorized for administrative access
 ```
-5. **Generate + isi `VEX_BackendURL.lua`:**
+5. **Obfuscate Target Endpoints `(VEX_BackendURL.lua)`:**
 ```bash
 python3 encoder/VEX_URLEncoder.py
-# Copy output ke VEX_BackendURL.lua
-# Lalu obfuscate di https://luarmor.net
+# Extract the encoded character array output, apply it to VEX_BackendURL.lua,
+# and process the final script through an obfuscator (e.g., Luarmor).
 ```
-6. **Embed map signature** (sekali setelah setup):
+6. **Embed Cryptographic Map Signature (Run once during initialization):
 ```lua
--- Di Command Bar Roblox Studio:
+-- Execute via the Roblox Studio Command Bar:
 local VEX = game.ServerScriptService.VEX
 require(VEX.VEX_MapProtection).EmbedSignature(require(VEX.VEX_Config))
 ```
-7. **Publish game**
+7. **Publish the experience to Roblox.**
 
 ---
 
-## ⚡ Fix 405 Method Not Allowed (Vercel)
+## ⚡ Resolution: Vercel 405 Method Not Allowed Error
 
-Error ini terjadi jika entry point ada di folder `api/`. Struktur yang BENAR:
+To circumvent Vercel routing conflicts typically caused by placing the entry point inside an api/ directory, the project utilizes a root-level architecture:
 ```
 backend/
-├── handler.js    ← di ROOT, BUKAN di api/
-└── vercel.json   ← pakai "rewrites", BUKAN "routes"
+├── handler.js    ← Placed at the ROOT directory, NOT within api/
+└── vercel.json   ← Configured with routing rewrites, NOT explicit routes
 ```
-`vercel.json` yang benar:
+Ensure your `vercel.json` matches the following standard configuration:
 ```json
 {
   "builds": [{ "src": "handler.js", "use": "@vercel/node" }],
@@ -139,7 +140,7 @@ backend/
 
 ---
 
-## 🛡️ Fitur Deteksi
+## 🛡️ Threat Detection Matrix
 
 | Cheat | Deteksi | Severity | Global Ban? |
 |-------|---------|----------|-------------|
@@ -153,44 +154,42 @@ backend/
 
 ---
 
-## 🌐 Global Ban Network
+## 🌐 Global Ban Network Architecture
 
-Mirip VAC Steam — banned di Map A = blocked di semua map VEX:
+Operating similarly to Valve’s Anti-Cheat (VAC) ecosystem, a restriction applied within one VEX-secured environment instantly propagates across all experiences within the network.
 ```
-Map A deteksi EXPLOIT_EXEC
-    ↓
-POST /api/globalban/add → Supabase global_bans
-    ↓
-Player coba masuk Map B
-    ↓
-GET /api/globalban/check/:uid → globally_banned: true
-    ↓
-Player di-kick otomatis ❌
+[ Experience A ] Detects Exploit Execution (EXPLOIT_EXEC)
+       ↓
+[ API Request ]  POST /api/globalban/add → Commits to Supabase `global_bans`
+       ↓
+[ Experience B ] Target player attempts authentication during join phase
+       ↓
+[ API Verification ] GET /api/globalban/check/:uid → Returns `globally_banned: true`
+       ↓
+[ Action Layer ] Player session is immediately terminated via an automated network kick ❌
 ```
 
 ---
 
-## 🔧 Maintenance Mode
+## 🔧 Maintenance Mode Engine
 
-Toggle dari Web Dashboard → Maintenance:
-- **ON**: semua player baru di-kick (kecuali admin)
-- **OFF**: server berjalan normal
-- Custom message bisa diset
-
----
-
-## ⚠️ Notifikasi Tamper
-
-Saat license TAMPERED (developer keluar Discord):
-1. **Roblox Studio Output** → `warn()` berwarna oranye/merah
-2. **In-game popup** → GUI notification ke semua admin yang sedang online
+System state can be toggled via the Web Dashboard's Management panel:
+1. Active (ON): Closes the experience to the public; incoming player connections are refused and disconnected with a customizable network message (authorized administrators are bypassed).
+2. Inactive (OFF): Standard gameplay production environment.
 
 ---
 
-## 👑 Owner Discord ID
+## ⚠️ Integrity & Tamper Protection
 
-Set `OWNER_DISCORD_IDS=id1,id2` di backend `.env` dan `BOT_SECRET` di bot `.env`.
-Owner tidak dibatasi 5 PlaceId — bisa create unlimited.
+If a developer attempts to bypass or violate license terms (e.g., leaving the authorized Discord guild):
+1. **Roblox Studio Diagnostics:** Outputs runtime warnings flagged in orange/red syntax alerts.
+2. **In-Game Intercepts:** Triggers an immediate, non-bypassable GUI warning layout rendered to all active server administrators.
+
+---
+
+## 👑 Administrative Tiering
+
+By specifying `OWNER_DISCORD_IDS=id1,id2` in the backend environment alongside the associated `BOT_SECRET` in the Discord bot configuration, tier restrictions are completely removed. Users within this array bypass the standard developer limit (maximum of 5 PlaceId allocations) and receive unlimited provisioning capabilities.
 
 ---
 
@@ -198,21 +197,21 @@ Owner tidak dibatasi 5 PlaceId — bisa create unlimited.
 
 | Command | Fungsi |
 |---------|--------|
-| `/create <placeId>` | Dapat Secret Key |
-| `/cs <placeId>` | Cek status license |
-| `/ct <placeId>` | Cek timer license |
-| `/renewal <placeId>` | Perpanjang 120 hari |
-| `/help` | Panduan |
+| `/create <placeId>` | Provisions a unique cryptographic Secret Key for an experience |
+| `/cs <placeId>` | Fetches real-time licensing and system operational status |
+| `/ct <placeId>` | Evaluates current licensing duration and expiration timers |
+| `/renewal <placeId>` | Appends a 120-day production extension to the specified experience |
+| `/help` | Returns the comprehensive onboarding technical manual |
 
-*Owner: tidak ada batas PlaceId. Developer biasa: max 5.*
+*Owner: No PlaceId limit. Regular developers: max 5*
 
 ---
 
-## 📊 Database Auto-Delete
+## 📊 Database Retention & Pruning Schedules
 
 | Data | Retention |
 |------|-----------|
-| Violations | 90 hari |
-| License (inactive) | 120 hari |
+| Violations | 90 day |
+| License (inactive) | 120 day |
 | Bans | Permanent / custom duration |
 | Global bans | Permanent (manual unban) |
