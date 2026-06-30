@@ -1,8 +1,12 @@
 # 🛡️ VEX Anti-Cheat v2.0
-**Virtual Execution X-termination — A hybrid-cloud anti-cheat framework engineered for Roblox developers.**
+
 [![Documentation](https://img.shields.io/badge/Documentation-VEX_Docs-blue?style=for-the-badge&logo=gitbook)](https://ramadaniel7.github.io/VEX-Docs/#docs)
 [![ToS](https://img.shields.io/badge/Terms_of_Service-ToS-red?style=for-the-badge&logo=read-the-docs)](https://ramadaniel7.github.io/VEX-Docs/#tos)
 [![Privacy Policy](https://img.shields.io/badge/Privacy_Policy-Privacy-green?style=for-the-badge&logo=shield)](https://ramadaniel7.github.io/VEX-Docs/#privacy)
+
+
+**Virtual Execution X-termination — A hybrid-cloud anti-cheat framework engineered for Roblox developers.**
+
 ---
 
 ## 📁 Project Structure
