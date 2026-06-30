@@ -8,10 +8,10 @@
 ```
 VEX-AntiCheat/
 ├── database/schema.sql             → Execute via Supabase SQL Editor
-├── backend/                        → Deploy to Vercel (Node.js)
-│   ├── handler.js                  ← Vercel entry point (ROOT level)
+├── backend/                        → Deploy (Node.js)
+│   ├── handler.js                  ← entry point (ROOT level)
 │   ├── server.js                   ← Express application core
-│   ├── vercel.json                 ← Vercel deployment routing configuration
+│   ├── vercel.json                 ← deployment routing configuration
 │   ├── middleware/auth.js
 │   └── routes/
 │       ├── license.js
@@ -19,7 +19,7 @@ VEX-AntiCheat/
 │       ├── admin.js
 │       ├── globalban.js
 │       └── maintenance.js
-├── bot/                            → Deploy to Fps.ms or Pterodactyl (Node.js)
+├── bot/                            
 │   ├── index.js
 │   ├── commands/
 │   │   ├── create.js    /create
@@ -45,8 +45,8 @@ VEX-AntiCheat/
 │   │   └── VEX_ClientHandler.lua    ← Tamper Detection Popup & Integrity Layer
 │   └── ReplicatedStorage/
 │       └── VEX_TopbarIcon.lua
-├── web/index.html                  → Deploy to Vercel (Static Dashboard)
-└── encoder/VEX_URLEncoder.py        → Character-code generator for URL obfuscation
+├── web/index.html                  
+└── encoder/VEX_URLEncoder.py        
 ```
 
 ---
