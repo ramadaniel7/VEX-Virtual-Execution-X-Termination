@@ -1,50 +1,28 @@
-# ==========================================
-# 1. DEPENDENCIES & PACKAGES
-# ==========================================
-# Mengabaikan semua node_modules di folder backend dan bot
 **/node_modules/
 node_modules/
 
-# Mengabaikan berkas log/error
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# ==========================================
-# 2. ENVIRONMENT VARIABLES & SENSITIVE DATA
-# ==========================================
-# Mengabaikan berkas env di backend atau sub-folder lain
 **/.env
 .env
 .env.local
 .env.*.local
 
-# Kredensial OS atau IDE lokal
 .DS_Store
 .vscode/
 .idea/
 
-# ==========================================
-# 3. BACKEND & VERCEL SPECIFICS
-# ==========================================
-# Folder build lokal atau cache dari Vercel
 .vercel/
 dist/
 
-# ==========================================
-# 4. PYTHON / ENCODER SPECIFICS
-# ==========================================
-# Mengabaikan berkas bytecode Python dari folder encoder
 **/__pycache__/
 *.pyc
 *.pyo
 *.pyd
 .pytest_cache/
 
-# ==========================================
-# 5. ROBLOX DEPLOYMENT EXCLUSIONS (OPTIONAL)
-# ==========================================
-# Jika kamu menggunakan Rojo untuk sync dan menghasilkan berkas build .rbxl/.rbxlx
 *.rbxl
 *.rbxlx
